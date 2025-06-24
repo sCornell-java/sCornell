@@ -16,7 +16,7 @@ public class PlannerController {
 
     @DeleteMapping("goals/delete")
     public ResponseDTO deletePlan(@RequestParam("id") String id) {
-        log.info("deletePlan:{}", id);
+        log.info("deletePlanId:{}", id);
         boolean delete = plannerService.deletePlan(id);
         return new ResponseDTO(delete ? "삭제되었습니다." : "없는 계획이거나 삭제된 계획입니다.");
     }

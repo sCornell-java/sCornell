@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -15,5 +17,6 @@ public class PlanEntity {
     private String id;
     private String title;
     private String detail;
-    private String date;
+    private LocalDate date;
+    private boolean success;
 }
