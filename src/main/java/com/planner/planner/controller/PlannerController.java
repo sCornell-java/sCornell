@@ -33,7 +33,7 @@ public class PlannerController {
         log.info("planDescription:{}", plan.getDetail());
         log.info("planDate:{}", plan.getDate());
         boolean created = plannerService.registerPlan(plan);
-        return new ResponseDTO(created ? "ok" : "fail");
+        return new ResponseDTO(created ? "생성되었습니다." : "이미 존재하는 id입니다.");
     }
     @DeleteMapping("/goals/delete")
     public ResponseDTO deletePlan(@RequestParam("id") String id) {
@@ -45,12 +45,12 @@ public class PlannerController {
     public ResponseDTO updatePlan(@RequestParam("id") String id, @RequestBody @Valid UpdateDTO updateDTO) {
         log.info("updatePlanId:{}", id);
         boolean updated = plannerService.updatePlan(id,updateDTO);
-        return new ResponseDTO(updated ? "updated" : "not found");
+        return new ResponseDTO(updated ? "수정되었습니다." : "id를 찾을 수 없습니다.");
     }
     @PutMapping("/goals/success")
-    public ResponseDTO success(@RequestBody SuccessRequestDTO successRequestDTO) {
-        log.info("success: {}", successRequestDTO);
-        boolean updated = plannerService.changeResultPlan(successRequestDTO);
+    public ResponseDTO successPlan(@RequestParam("id") String id, @RequestBody @Valid SuccessRequestDTO successRequestDTO) {
+        log.info("success: {}", id);
+        boolean updated = plannerService.changeResultPlan(id,successRequestDTO);
         return new ResponseDTO(updated ? "달성 여부가 변경되었습니다." : "달성 여부 변경에 실패하였습니다.");
     }
 }

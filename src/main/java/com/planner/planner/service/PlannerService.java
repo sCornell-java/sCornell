@@ -28,11 +28,15 @@ public class PlannerService {
             dto.setTitle(entity.getTitle());
             dto.setDetail(entity.getDetail());
             dto.setDate(entity.getDate());
+            dto.setSuccess(entity.isSuccess());
             return dto;
         }).collect(Collectors.toList());
     }
 
     public boolean registerPlan(PlanDTO planDTO) {
+        if (planRepository.existsById(planDTO.getId())) {
+            return false;
+        }
         PlanEntity planEntity = new PlanEntity();
         planEntity.setId(planDTO.getId());
         planEntity.setTitle(planDTO.getTitle());
@@ -70,17 +74,14 @@ public class PlannerService {
         return false;
     }
 
-    public boolean changeResultPlan(SuccessRequestDTO successRequestDTO) {
-        Optional<PlanEntity> optionalPlanEntity = planRepository.findById(successRequestDTO.getId());
-
-        if (optionalPlanEntity.isPresent()) {
-            PlanEntity planEntity = optionalPlanEntity.get();
+    public boolean changeResultPlan(String id,SuccessRequestDTO successRequestDTO) {
+        Optional<PlanEntity> optional = planRepository.findById(id);
+        if (optional.isPresent()) {
+            PlanEntity planEntity = optional.get();
             planEntity.setSuccess(successRequestDTO.isSuccess()); // DTO의 값 그대로 반영
             planRepository.save(planEntity);
-            System.out.println("if 문 안");
             return true;
         }
-        System.out.println("if 문 밖");
         return false;
     }
 }
