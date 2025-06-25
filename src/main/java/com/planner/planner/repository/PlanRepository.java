@@ -5,5 +5,4 @@ import com.planner.planner.entity.PlanEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlanRepository extends JpaRepository<PlanEntity,String> {
-}
+public interface PlanRepository extends JpaRepository<PlanEntity,String> { }

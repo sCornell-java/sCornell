@@ -1,7 +1,12 @@
 package com.planner.planner.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -12,5 +17,7 @@ public class PlanEntity {
     private String id;
     private String title;
     private String detail;
-    private String date;
+    private LocalDate date;
+    private boolean success;
 }
+
