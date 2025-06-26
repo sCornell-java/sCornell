@@ -4,7 +4,6 @@ import com.planner.planner.dto.ResponseDTO;
 import com.planner.planner.dto.SuccessRequestDTO;
 import com.planner.planner.service.PlannerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +23,7 @@ public class PlannerController {
     }
 
     @PutMapping("/goals/success")
-    public ResponseDTO success(@RequestBody SuccessRequestDTO successRequestDTO) {
+    public ResponseDTO successPlan(@RequestBody SuccessRequestDTO successRequestDTO) {
         log.info("success: {}", successRequestDTO);
         boolean updated = plannerService.changeResultPlan(successRequestDTO);
         return new ResponseDTO(updated ? "달성 여부가 변경되었습니다." : "달성 여부 변경에 실패하였습니다.");
