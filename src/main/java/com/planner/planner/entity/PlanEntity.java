@@ -20,3 +20,4 @@ public class PlanEntity {
     private LocalDate date;
     private boolean success;
 }
+
